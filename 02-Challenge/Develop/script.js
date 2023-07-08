@@ -63,10 +63,16 @@ function generatePassword(){
   // randomize selected arrays, and randomize selcted array values
   for (var i = 0; i < passwordLength; i++ ){
 
-    var randomNumber = getRandomNumber(0, selectedCharactersArray.length - 1);
-    var randomArray = selectedCharactersArray[randomNumber]
-    console.log("loop number " + i + ", selected array " + randomArray)
+    var chooseRandomArray = getRandomNumber(0, selectedCharactersArray.length - 1);
+    var randomArray = selectedCharactersArray[chooseRandomArray]
+    // console.log("loop number " + i + ", selected array " + randomArray)
 
+    // Get new random number between 0 and length of (randomArray - 1)
+    var chooseRandomChar = getRandomNumber(0, randomArray.length - 1)
+    // Grab the character from randomArray[newRandomNumber]
+    var randomCharacter = randomArray[chooseRandomChar]
+    // password = password + the character
+    password = password+randomCharacter
   }
 
   // for (var i = 0; i < passwordLength; i++ ){
