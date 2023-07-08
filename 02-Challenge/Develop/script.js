@@ -28,43 +28,51 @@ function generatePassword(){
   }
 
   // create empty variables
-  var selectedCharacters = []
+  var selectedCharactersArray = []
   var password = ""
 
   // prompt for lowercase,  if true add lowercase array to selected characters
   var lowerCase = window.confirm("Lower case?")
   if (lowerCase) {
-    selectedCharacters.push(lowerCaseLetters)
-    console.log(selectedCharacters)
+    selectedCharactersArray.push(lowerCaseLetters)
+    console.log(selectedCharactersArray)
   }
   // // prompt for uppercase,  if true add array to selected characters
   var upperCase = window.confirm("Upper case?")
   if (upperCase) {
-    selectedCharacters.push(upperCaseLetters)
-    console.log(selectedCharacters)
+    selectedCharactersArray.push(upperCaseLetters)
+    console.log(selectedCharactersArray)
   }
   // prompt for special characters,  if true add array to selected characters
   var specialChar = window.confirm("Special characters?")  
   if (specialChar) {
-    selectedCharacters.push(specialCharacters)
-    console.log(selectedCharacters)
+    selectedCharactersArray.push(specialCharacters)
+    console.log(selectedCharactersArray)
   }
 // prompt for numbers,  if true add array to selected characters
   var number = window.confirm("Numbers?")
   if (number) {
-    selectedCharacters.push(numberChar)
-    console.log(selectedCharacters)
+    selectedCharactersArray.push(numberChar)
+    console.log(selectedCharactersArray)
   }
-
-  if (!lowerCase && !upperCase && !specialChar && !number){
-
+  // make sure at least 1 was chosen
+  if (selectedCharactersArray.length == 0){
     return alert("Password must contain at least 1 type of character.")
   }
 
+  // randomize selected arrays, and randomize selcted array values
   for (var i = 0; i < passwordLength; i++ ){
-    var num = getRandomNumber(0, 25)
-    password = password+lowerCaseLetters[num]
+
+    var randomNumber = getRandomNumber(0, selectedCharactersArray.length - 1);
+    var randomArray = selectedCharactersArray[randomNumber]
+    console.log("loop number " + i + ", selected array " + randomArray)
+
   }
+
+  // for (var i = 0; i < passwordLength; i++ ){
+  //   var num = getRandomNumber(0, 25)
+  //   password = password+lowerCaseLetters[num]
+  // }
 
   return password;
 }
